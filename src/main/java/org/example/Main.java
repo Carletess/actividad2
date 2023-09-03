@@ -1,3 +1,6 @@
+/* for (int fila = 0; fila < matriz.length; fila++) {
+        for (int columna = 0; columna < matriz[0].length; columna++) { */
+
 package org.example;
 import java.util.Scanner;
 
@@ -7,9 +10,9 @@ public class Main {
     }
 
     public static void iniciar() {
-        int[][] semana = crearMatrizSemana();
+        int [][] semana = crearMatrizSemana();
         llenarMatrizSemana(semana);
-        double[] promedios = calcularPromedioDeFilas(semana);
+        double [] promedios = calcularPromedioDeFilas(semana);
 
         mostrarMenu(semana, promedios);
     }
@@ -36,6 +39,20 @@ public class Main {
         }
     }
 
+    public static double calcularPromedio(int[][] matriz) {
+        int suma = 0;
+        int elementos = 0;
+
+        for (int fila = 0; fila < matriz.length; fila++) {
+            for (int columna = 0; columna < matriz[0].length; columna++) {
+                suma += matriz[fila][columna];
+                elementos++;
+            }
+        }
+
+        return (double) suma / elementos;
+    }
+
     public static double[] calcularPromedioDeFilas(int[][] semana) {
         double[] promedios = new double[semana.length];
 
@@ -52,19 +69,8 @@ public class Main {
     }
 
     public static double calcularPromedioSemana(int[][] semana) {
-        int sumaTemperaturas = 0;
-        int count = 0;
-
-        for (int dia = 0; dia < semana.length; dia++) {
-            for (int hora = 0; hora < semana[0].length; hora++) {
-                sumaTemperaturas += semana[dia][hora];
-                count++;
-            }
-        }
-
-        return (double) sumaTemperaturas / count;
+        return calcularPromedio(semana);
     }
-
 
     public static int obtenerDiaMasFrio(double[] promedios) {
         double diaFrio = promedios[0];
