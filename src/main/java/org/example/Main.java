@@ -51,6 +51,21 @@ public class Main {
         return promedios;
     }
 
+    public static double calcularPromedioSemana(int[][] semana) {
+        int sumaTemperaturas = 0;
+        int count = 0;
+
+        for (int dia = 0; dia < semana.length; dia++) {
+            for (int hora = 0; hora < semana[0].length; hora++) {
+                sumaTemperaturas += semana[dia][hora];
+                count++;
+            }
+        }
+
+        return (double) sumaTemperaturas / count;
+    }
+
+
     public static int obtenerDiaMasFrio(double[] promedios) {
         double diaFrio = promedios[0];
         int diaMasFrio = 0;
@@ -119,7 +134,8 @@ public class Main {
             System.out.println("4. Mostrar dia mas frio");
             System.out.println("5. Mostrar hora mas fria");
             System.out.println("6. Mostrar hora mas calurosa");
-            System.out.println("7. Salir");
+            System.out.println("7. Mostrar promedio de la temperatura en la semana");
+            System.out.println("8. Salir");
             System.out.print("Ingresa una opción: ");
 
             opcion = scanner.nextInt();
@@ -157,6 +173,11 @@ public class Main {
                     break;
 
                 case 7:
+                    double promedioSemana = calcularPromedioSemana(semana);
+                    System.out.println("\nPromedio de temperaturas de la semana: " + promedioSemana);
+                    break;
+
+                case 8:
                     System.out.println("\nSaliste");
                     break;
 
@@ -164,6 +185,6 @@ public class Main {
                     System.out.println("Ingresa un opcion valida");
             }
 
-        } while (opcion != 7);
+        } while (opcion != 8);
     }
 }
