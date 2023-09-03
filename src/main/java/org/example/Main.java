@@ -2,7 +2,9 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        imprimirMatrizCompletada();
+        int[][] matriz = imprimirMatrizCompletada();
+        calcularSumaDeFilas(matriz);
+        calcularPromedioDeFilas(matriz);
     }
 
     public static int[][] imprimirMatrizCompletada(){
@@ -30,13 +32,34 @@ public class Main {
         }
         return semana;
     }
-    public static double calcularPromedio(int [][] semana) {
-        double promedio = 0;
+    public static int[] calcularSumaDeFilas(int[][] semana){
+        int[] sumas = new int[semana.length]; // Array para almacenar las sumas de las filas
 
-        for(int i = 0; i < 3; i++) {
-            promedio += (i / 3);
+        for (int fila = 0; fila < semana.length; fila++) {
+            int suma = 0; // Inicializa la suma para cada fila
+            for (int columna = 0; columna < semana[0].length; columna++) {
+                suma += semana[fila][columna];
+            }
+            System.out.println("La suma de la fila " + fila + " es: " + suma);
+            sumas[fila] = suma; // Almacena la suma en el array
         }
-        return promedio;
+
+        return sumas;
+    }
+
+    public static double[] calcularPromedioDeFilas(int[][] semana) {
+        double[] promedios = new double[semana.length];
+
+        for (int fila = 0; fila < semana.length; fila++) {
+            int suma = 0;
+            for (int columna = 0; columna < semana[0].length; columna++) {
+                suma += semana[fila][columna];
+            }
+            promedios[fila] = (double) suma / semana[0].length;
+            System.out.println("El promedio de la fila " + fila + " es: " + promedios[fila]);
+        }
+
+        return promedios;
     }
 
     public static int obtenerDiaMasFrio() {
